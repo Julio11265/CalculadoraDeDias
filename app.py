@@ -4,41 +4,41 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# Calcular días laborales
-def calcular_dias_laborales(mes):
-    ano = 2025
-    dias_laborales = 0
+# Calculate working days
+def calculate_working_days(month):
+    year = 2025
+    working_days = 0
 
-    # Recorrer los días laborales del mes
-    for dia in range(1, calendar.monthrange(ano, mes)[1] + 1):
-        fecha = datetime(ano, mes, dia)
+    # Iterate through the working days of the month
+    for day in range(1, calendar.monthrange(year, month)[1] + 1):
+        date = datetime(year, month, day)
 
-        if fecha.weekday() < 5:
-            dias_laborales += 1
-    return dias_laborales
+        if date.weekday() < 5:
+            working_days += 1
+    return working_days
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
         try:
-            mes = int(request.form['mes'])
-            dias_restados = int(request.form['dias_restados'])
+            month = int(request.form['mes'])
+            deducted_days = int(request.form['dias_restados'])
 
-            if mes < 1 or mes > 12:
-                raise ValueError("El mes debe estar entre 1 y 12")
+            if month < 1 or month > 12:
+                raise ValueError("The month must be between 1 and 12")
 
-            dias_laborales = calcular_dias_laborales(mes)
-            dias_laborales_restados = dias_laborales - dias_restados
-            if dias_laborales_restados < 0:
-                raise ValueError("Los días laborales restados no pueden ser mayores que los días laborales totales.")
+            working_days = calculate_working_days(month)
+            remaining_working_days = working_days - deducted_days
+            if remaining_working_days < 0:
+                raise ValueError("The deducted working days cannot be greater than the total working days.")
 
-            porcentaje_dias = dias_laborales_restados * 0.40
-            horas_laborales = dias_laborales_restados * 8
-            porcentaje_horas = horas_laborales * 0.40
+            day_percentage = remaining_working_days * 0.40
+            working_hours = remaining_working_days * 8
+            hour_percentage = working_hours * 0.40
 
-            return render_template('index.html', resultado=True, dias_laborales=dias_laborales,
-                                   dias_laborales_restados=dias_laborales_restados,
-                                   porcentaje_dias=porcentaje_dias, porcentaje_horas=porcentaje_horas)
+            return render_template('index.html', resultado=True, working_days=working_days,
+                                   remaining_working_days=remaining_working_days,
+                                   day_percentage=day_percentage, hour_percentage=hour_percentage)
         except ValueError as error:
             return render_template('index.html', error=str(error))
 
