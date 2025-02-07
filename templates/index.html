@@ -112,7 +112,7 @@
             <label for="month">Enter the corresponding month (1-12):</label>
             <input type="text" name="mes" id="month" required>
 
-            <label for="deducted_days">Total number of vacation, rationing, and holiday days in the month:</label>
+            <label for="deducted_days">Total number of vacation, rationing and holiday days in the month:</label>
             <input type="text" name="dias_restados" id="deducted_days" required>
 
             <button type="submit">Calculate</button>
@@ -122,7 +122,7 @@
             <div class="result">
                 <h3>Results:</h3>
                 <p><strong>Workdays in the month:</strong> {{ dias_laborales }}</p>
-                <p><strong>Workdays excluding rationing/vacations/holidays:</strong> {{ dias_laborales_restados }}</p>
+                <p><strong>Workdays excluding vacations/rationing/holidays:</strong> {{ dias_laborales_restados }}</p>
                 <p><strong>40% of workdays:</strong> {{ porcentaje_dias | round(2) }} days</p>
                 <p><strong>40% of work hours:</strong> {{ porcentaje_horas | round(2) }} hours</p>
             </div>
