@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work Days/Office Attendance Calculator - ENDAVA</title>
+    <title>Work Days Calculator</title>
 
-    <!-- Link to a Google Font for better typography -->
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -43,6 +43,7 @@
             color: #555;
             display: block;
             margin-bottom: 8px;
+            text-align: left;
         }
 
         input[type="text"] {
@@ -107,12 +108,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Office Attendance Calculator</h1>
+        <h1>Work Days Calculator</h1>
         <form method="post">
-            <label for="month">Enter the corresponding month (1-12):</label>
+            <label for="month">Enter the month (1-12):</label>
             <input type="text" name="mes" id="month" required>
 
-            <label for="deducted_days">Total number of vacation, rationing and holiday days in the month:</label>
+            <label for="deducted_days">Total deducted days (vacation, holidays, etc.):</label>
             <input type="text" name="dias_restados" id="deducted_days" required>
 
             <button type="submit">Calculate</button>
@@ -121,10 +122,10 @@
         {% if resultado %}
             <div class="result">
                 <h3>Results:</h3>
-                <p><strong>Workdays in the month:</strong> {{ dias_laborales }}</p>
-                <p><strong>Workdays excluding vacations/rationing/holidays:</strong> {{ dias_laborales_restados }}</p>
-                <p><strong>40% of workdays:</strong> {{ porcentaje_dias | round(2) }} days</p>
-                <p><strong>40% of work hours:</strong> {{ porcentaje_horas | round(2) }} hours</p>
+                <p><strong>Total working days in the month:</strong> {{ working_days }}</p>
+                <p><strong>Remaining working days:</strong> {{ remaining_working_days }}</p>
+                <p><strong>40% of working days:</strong> {{ day_percentage | round(2) }} days</p>
+                <p><strong>40% of working hours:</strong> {{ hour_percentage | round(2) }} hours</p>
             </div>
         {% endif %}
 
@@ -134,7 +135,7 @@
             </div>
         {% endif %}
 
-        <p class="note">Note: The calculation is based on a month working Monday to Friday</p>
+        <p class="note">Note: The calculation is based on a month working Monday to Friday.</p>
         <p class="note">Created by: Julio Gonzalez</p>
     </div>
 </body>
