@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de días laborales/asistencia a la oficina - ENDAVA</title>
+    <title>Work Days/Office Attendance Calculator - ENDAVA</title>
 
-    <!-- Enlace a una fuente de Google Fonts para mejorar la tipografía -->
+    <!-- Link to a Google Font for better typography -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
-        /* Estilos generales */
+        /* General Styles */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f5f5f5;
@@ -77,14 +77,14 @@
             background-color: #fc846c;
         }
 
-        .resultado, .error {
+        .result, .error {
             margin-top: 20px;
             padding: 15px;
             border-radius: 5px;
             text-align: left;
         }
 
-        .resultado {
+        .result {
             background-color: #fc543c;
             color: #FFFFFF;
         }
@@ -98,7 +98,7 @@
             margin: 5px 0;
         }
 
-        .nota {
+        .note {
             font-size: 0.9em;
             color: #888;
             margin-top: 15px;
@@ -107,24 +107,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Calculadora de asistencia a la oficina</h1>
+        <h1>Office Attendance Calculator</h1>
         <form method="post">
-            <label for="mes">Ingresa el mes correspondiente (1-12):</label>
-            <input type="text" name="mes" id="mes" required>
+            <label for="month">Enter the corresponding month (1-12):</label>
+            <input type="text" name="mes" id="month" required>
 
-            <label for="dias_restados">Total de días de vacaciones, racionamiento y festivos del mes:</label>
-            <input type="text" name="dias_restados" id="dias_restados" required>
+            <label for="deducted_days">Total number of vacation, rationing, and holiday days in the month:</label>
+            <input type="text" name="dias_restados" id="deducted_days" required>
 
-            <button type="submit">Calcular</button>
+            <button type="submit">Calculate</button>
         </form>
 
         {% if resultado %}
-            <div class="resultado">
-                <h3>Resultados:</h3>
-                <p><strong>Días laborales en el mes:</strong> {{ dias_laborales }}</p>
-                <p><strong>Días laborales sin contar racionamiento/vacaciones/festivos:</strong> {{ dias_laborales_restados }}</p>
-                <p><strong>40% de días laborales:</strong> {{ porcentaje_dias | round(2) }} días</p>
-                <p><strong>40% de horas laborales:</strong> {{ porcentaje_horas | round(2) }} horas</p>
+            <div class="result">
+                <h3>Results:</h3>
+                <p><strong>Workdays in the month:</strong> {{ dias_laborales }}</p>
+                <p><strong>Workdays excluding rationing/vacations/holidays:</strong> {{ dias_laborales_restados }}</p>
+                <p><strong>40% of workdays:</strong> {{ porcentaje_dias | round(2) }} days</p>
+                <p><strong>40% of work hours:</strong> {{ porcentaje_horas | round(2) }} hours</p>
             </div>
         {% endif %}
 
@@ -134,8 +134,8 @@
             </div>
         {% endif %}
 
-        <p class="nota">Nota: El cálculo se realiza sobre un mes trabajo de lunes a viernes</p>
-        <p class="nota">Created by: Julio Gonzalez</p>
+        <p class="note">Note: The calculation is based on a month working Monday to Friday</p>
+        <p class="note">Created by: Julio Gonzalez</p>
     </div>
 </body>
 </html>
